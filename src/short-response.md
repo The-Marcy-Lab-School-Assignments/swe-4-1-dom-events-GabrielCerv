@@ -37,6 +37,11 @@ But an error is thrown.
 
 **Your Answer:**
 
+The error is read as Uncaught TypeError: Cannot read properties of null (reading 'style')
+This error occurs because the code runs and looks for `#my-button`, the button hasn’t been created yet. This is because the script is above the body and ahead of all the other code so the code basically says “I don’t see that,” and gives back `null`.
+The issue is that Script is implemented in the code before the body when it is supposed to be at the very end of the body just above the ending of the body.
+
+
 ## Question 2: event.target vs event.currentTarget
 
 Consider this HTML:
@@ -60,6 +65,7 @@ div.addEventListener('click', (event) => {
 When a user clicks the button, both `event.target` and `event.currentTarget` are logged. Explain what each property represents in this scenario and why they might be different.
 
 **Your Answer:**
+When the button is clicked both are logged because the `event.target` is referring to the clicks on the button while the `event.currentTarget` is flowing up into the div because its referring to the #button-container thats contained inside of the div. This is because the Listener is directly referencing the div instead of actual clicks. 
 
 ## Question 3: Creating Elements Dynamically
 
@@ -95,7 +101,7 @@ document.body.append(productCard);
 However, when the page loads and the code is executed, the user isn't able to see the image, product name or product price. What is the issue with this code?
 
 **Your Answer:**
-
+To ensure that you see all of those elements you have to append them all, which this code only shows that it is just appending the productCard, but you need to do the img, product name, and product price in order to see it when the page is executed. 
 
 ## Question 4: Event Delegation and event.target.closest()
 

@@ -1,3 +1,5 @@
+
+
 // Feel free to use this array of fortunes or come up with your own!
 const fortunes = [
   "It is certain",
@@ -29,3 +31,22 @@ TODO:
   - [ ] generates a random fortune from the fortunes array
   - [ ] shows the fortune in the answer element
 */
+
+const eight = document.querySelector("#eight");
+const askBtn = document.querySelector("#ask-btn");
+const questions = document.querySelector("#answer");
+
+
+
+askBtn.addEventListener('click', function () {
+  const randomIndex = Math.floor(Math.random() * fortunes.length);
+
+  eight.style.display = 'none';
+  questions.style.display = 'block'
+  questions.textContent = `${fortunes[randomIndex]}`
+
+
+
+});
+
+
