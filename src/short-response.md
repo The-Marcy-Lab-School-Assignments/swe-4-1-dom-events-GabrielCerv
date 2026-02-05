@@ -37,6 +37,11 @@ But an error is thrown.
 
 **Your Answer:**
 
+The error is read as Uncaught TypeError: Cannot read properties of null (reading 'style')
+This error occurs because the code runs and looks for `#my-button`, the button hasn’t been created yet. This is because the script is above the body and ahead of all the other code so the code basically says “I don’t see that,” and gives back `null`.
+The issue is that Script is implemented in the code before the body when it is supposed to be at the very end of the body just above the ending of the body.
+
+
 ## Question 2: event.target vs event.currentTarget
 
 Consider this HTML:
@@ -60,6 +65,7 @@ div.addEventListener('click', (event) => {
 When a user clicks the button, both `event.target` and `event.currentTarget` are logged. Explain what each property represents in this scenario and why they might be different.
 
 **Your Answer:**
+When the button is clicked both are logged because the `event.target` is referring to the clicks on the button while the `event.currentTarget` is flowing up into the div because its referring to the #button-container thats contained inside of the div. This is because the Listener is directly referencing the div instead of actual clicks. 
 
 ## Question 3: Creating Elements Dynamically
 
@@ -95,7 +101,7 @@ document.body.append(productCard);
 However, when the page loads and the code is executed, the user isn't able to see the image, product name or product price. What is the issue with this code?
 
 **Your Answer:**
-
+To ensure that you see all of those elements you have to append them all, which this code only shows that it is just appending the productCard, but you need to append the img, product name, and product price in order to see it when the page is executed. 
 
 ## Question 4: Event Delegation and event.target.closest()
 
@@ -136,6 +142,11 @@ todoList.addEventListener('click', (event) => {
 
 **Your Answer:**
 
+1. The name of this approach is event delegation, the other approach is called direct event listeners. Event delegation is better because its more optimal coding approach that allows you to call upon only one eventListener instead of the multiple event listeners you would need in using the alternative approach. 
+2. `event.target.closest('li')` 
+`event.target` is directing towards the exact element that was clicked, while the second part of the code `closest('li')` walks through the DOM tree, and returns the nearest ancestor in the DOM tree which in this case is (`li`). Null is returned if no value is read.
+
+
 ## Question 5: NodeList
 
 Do some independent learning and reading about the `querySelectorAll()` method. Then, answer these questions:
@@ -144,3 +155,18 @@ Do some independent learning and reading about the `querySelectorAll()` method. 
 2. What is the difference between a `NodeList` and an array? Why is it important to know this difference?
 
 **Your Answer:**
+
+
+The difference between `querySelectorAll()` and `querySelector()` is, `querySelectorAll()` is utilized to collect/store multiple elements into a list of HTML elements (NodeList) that match the requirements of your code . `querySelector()` is used to find ONE singular  HTML element, and this singular element is the FIRST occurrence of that specific event, or if it's null.
+
+
+a great example of `querySelectorAll()` is provided below:
+```js
+const allButtons = document.querySelectorAll('.player-card');
+playerCards.forEach(card => {
+  card.addEventListener('click', () => {
+    console.log('Players selected!');
+  });
+});
+```
+In this example I am using one player card addEventListener to create the a `click` option to be able to select multiple different player cards and ally that addEventListener using `querySelectorAll()` to select all played cards, so they all have the same functional ability to be clicked and prints a console.log(message)
